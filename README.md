@@ -1,4 +1,4 @@
-# 活水桌面客户端
+# 活水分享页面
 
 ## 本地安装
 
@@ -26,18 +26,6 @@ npm run build
 ```
 npm run dev
 ```
-
-## 部署
-在staging server和production server安装Docker
-[docker installtion guide](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
-
-部署 (只部署活水webapp)
-```
-docker run -d -p 10084:10084 huoshui/huoshui-webapp:1.0
-```
-
-部署 (部署webapp和后端)
-参考[huoshui-backend-api](https://github.com/badfuture/huoshui-backend-api)
 
 ## 维护人员
 
