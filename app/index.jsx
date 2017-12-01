@@ -7,11 +7,17 @@ import ReviewItem from './components/review/ReviewItem'
 import TopBanner from './components/banner/TopBanner'
 import Spinner from './components/spinner/Spinner'
 import SegmentRatingCharts from './components/segment/SegmentRatingCharts'
+import { isMobile } from './utils/mobileCheck'
+
+const WEBAPP = "https://webapp.huoshui.org"
+const PROD = "https://api.huoshui.org"
+const DEV = "http://localhost:1337"
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
+      isMobile: false,
       loading: true,
       reviews: [],
       data: {},
@@ -20,21 +26,38 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    // parse url
+  parseUrl() {
     let path = location.pathname
     let pathArr = path.replace(/\//,'').split('/')
-    const courseId = pathArr[1]
-    const coursePath = pathArr[0]
+    return {
+      courseId: pathArr[1],
+      coursePath: pathArr[0],
+      length: pathArr.length,
+    }
+  }
+
+  componentWillMount() {
+    if (!isMobile()) {
+      //redirect to desktop environment
+      this.setState({isMobile: true})
+      const { courseId, coursePath, length} = this.parseUrl()
+      if (coursePath != 'courses' || length != 2 ) { return }
+      window.location.href = `${WEBAPP}/${coursePath}/${courseId}`
+    } else {
+      this.setState({isMobile: true})
+    }
+  }
+
+  componentDidMount() {
+    // parse url
+    const { courseId, coursePath, length} = this.parseUrl()
 
     // api call
-    if (coursePath != 'courses' || pathArr.length != 2 ) { return }
-    const PROD = "https://api.huoshui.org"
-    const DEV = "http://localhost:1337"
+    if (coursePath != 'courses' || length != 2 ) { return }
+
     let api_url = `${PROD}/${coursePath}/${courseId}?populate=all`
 
     axios.get(api_url).then((results) => {
-      console.log(results.data)
       const data = results.data
       this.setState({
         reviews: data.Reviews,
@@ -47,9 +70,9 @@ class App extends Component {
   }
 
   render() {
-    const { loading } = this.state
+    const { loading, isMobile } = this.state
 
-    if(loading) {
+    if(loading || !isMobile) {
       return <div>
         <div style={{
           top: '40%',
