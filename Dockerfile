@@ -15,7 +15,7 @@ WORKDIR /app/server
 RUN npm install
 
 # expose port
-EXPOSE 10084
+EXPOSE 10085
 
 # run command on start
 CMD ["node", "app.js"]

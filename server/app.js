@@ -5,7 +5,7 @@ const compression = require('compression')
 
 const app = express()
 app.use(compression())
-app.set('port', 10084)
+app.set('port', 10085)
 
 // serve static assets
 app.use(express.static(path.join(__dirname, '../dist')))
