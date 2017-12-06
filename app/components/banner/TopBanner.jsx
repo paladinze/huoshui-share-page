@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Image } from 'semantic-ui-react'
 
 export default class TopBanner extends Component {
   constructor() {
@@ -35,6 +35,7 @@ export default class TopBanner extends Component {
         <Button color="teal" floated="right">
           App 极速下载
         </Button>
+        <Image src="/images/sample/sample2.png" style={{ display: 'none' }} />
       </div>
     )
   }

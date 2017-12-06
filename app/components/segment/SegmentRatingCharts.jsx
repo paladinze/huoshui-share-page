@@ -12,7 +12,7 @@ const SegmentRatingCharts = (props) => {
 
   return (
     <div >
-      <Grid divided >
+      <Grid divided style={{ marginLeft: '0rem', marginRight: '0rem' }} >
         <Grid.Row>
           <Grid.Column width={8}>
             <div style={{ textAlign: 'center' }}>
