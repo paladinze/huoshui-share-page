@@ -1,0 +1,12 @@
+
+footer {
+  padding: 2em;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+}
+
+footer p {
+  line-height: 1.2em;
+  margin: 0 0 1em 0;
+}

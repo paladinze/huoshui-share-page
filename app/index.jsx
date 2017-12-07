@@ -8,6 +8,7 @@ import TopBanner from './components/banner/TopBanner'
 import Spinner from './components/spinner/Spinner'
 import SegmentRatingCharts from './components/segment/SegmentRatingCharts'
 import { isMobile } from './utils/mobileCheck'
+import styles from './styles/global.css'
 
 const WEBAPP = 'https://webapp.huoshui.org'
 const PROD = 'https://api.huoshui.org'
@@ -37,7 +38,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    if (!isMobile()) {
+    if (isMobile()) {
       // redirect to desktop environment
       this.setState({ isMobile: true })
       const { courseId, coursePath, length } = this.parseUrl()
@@ -89,8 +90,8 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <div className="container-main">
+      <div style={{ maxWidth: '650px', margin: '0 auto', background: 'white' }}>
+        <div className="container-main" >
           <TopBanner />
           <div style={{ marginBottom: '1em' }}>
             <div style={{ textAlign: 'center' }}>
@@ -141,7 +142,7 @@ class App extends Component {
             </Grid>
           </Container>
 
-          <Container style={{ marginTop: '1em' }}>
+          <div style={{ margin: '1em 1em 1em 1em' }}>
             <Comment.Group>
               {
                 this.state.reviews && this.state.reviews.map(review => (
@@ -149,8 +150,12 @@ class App extends Component {
                 ))
               }
             </Comment.Group>
-          </Container>
+          </div>
         </div>
+        <footer className={styles.footer}>
+          <p>中国最真实的评课平台 @ 2015 - 2017 活水</p>
+          <p>蜀ICP备16000087号 联系我们: paladinze@hotmail.com</p>
+        </footer>
       </div>
     )
   }
