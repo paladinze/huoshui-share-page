@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    if (isMobile()) {
+    if (!isMobile()) {
       // redirect to desktop environment
       this.setState({ isMobile: true })
       const { courseId, coursePath, length } = this.parseUrl()
